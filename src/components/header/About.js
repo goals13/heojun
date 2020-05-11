@@ -4,7 +4,7 @@ import './About.scss';
 const About = () => {
     return(
     <div className='About'>
-        About
+        소개
     </div>
     );
 }
