@@ -1,11 +1,19 @@
-import React from 'react';
+import React, {Component} from 'react';
+import PhoneForm from './check/PhoneFrom';
 
-const ToCheck = () => {
-    return (
+class ToCheck extends Component {
+    handleCreate = (data) => {
+      console.log(data);
+    }
+    render() {
+      return (
         <div>
-           검사하기asddddd
+          <PhoneForm
+            onCreate={this.handleCreate}
+          />
         </div>
-    );
-};
+      );
+    }
+  }
 
 export default ToCheck;
