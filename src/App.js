@@ -1,6 +1,5 @@
-import React from 'react';
-import Header from './components/header/Header';
-import Content from './components/content/Content';
+import React, {Component} from 'react';
+import Header from './components/Header';
 import { BrowserRouter } from 'react-router-dom';
 
 function App() {
