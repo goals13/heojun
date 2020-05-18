@@ -1,9 +1,10 @@
 import React from 'react';
+import View from  "./View";
 
 const ViewResult = () => {
     return (
         <div>
-            결과보기
+            <View />
         </div>
     );
 };
