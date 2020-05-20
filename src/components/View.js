@@ -3,11 +3,10 @@ import axios from 'axios';
 import './View.scss';
 
 function View() {
-  const [users, setUsers] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
+    const [users, setUsers] = useState(null);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
+  
     const fetchUsers = async () => {
       try {
         // 요청이 시작 할 때에는 error 와 users 를 초기화하고
@@ -24,25 +23,26 @@ function View() {
       }
       setLoading(false);
     };
-
-    fetchUsers();
-  }, []);
-
-  if (loading) return <div>로딩중..</div>;
-  if (error) return <div>에러가 발생했습니다</div>;
-  if (!users) return null;
-  return (
-    <ul>
-      {users.map(user => (
-        <li key={user.id}>
-            <div classname="a1">
-            {user.name}
-            </div>
-            ({user.phone})
-        </li>
-      ))}
-    </ul>
-  );
-}
-
-export default View;
+  
+    useEffect(() => {
+      fetchUsers();
+    }, []);
+  
+    if (loading) return <div>로딩중..</div>;
+    if (error) return <div>에러가 발생했습니다</div>;
+    if (!users) return null;
+    return (
+      <>
+        <ul>
+          {users.map(user => (
+            <li key={user.id}>
+              {user.username} ({user.name})
+            </li>
+          ))}
+        </ul>
+        <button onClick={fetchUsers}>다시 불러오기</button>
+      </>
+    );
+  }
+  
+  export default View;
