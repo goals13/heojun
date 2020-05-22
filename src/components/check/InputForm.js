@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
-import './InputForm.scss'; 
+
+import './InputForm.scss';
 
 class InputForm extends Component {
   state = {
@@ -82,16 +83,16 @@ class InputForm extends Component {
       hdl: this.state.hdl,
       ldl: this.state.ldl,
       crea: this.state.crea,
-      ast: this.state.ast,
+      ast: this.state.ast, 
       alt: this.state.alt,
       gam_gpt: this.state.gam_gpt
     };
     axios
       .post("http://3.34.5.242:5000/TEST2", data)
-      .then(res => console.log(res))
+      .then(res => console.log(res.data))
       .catch(err => console.log(err));
-      window.location = "/retrieve"
   };
+  
 
   render() {
     return (
