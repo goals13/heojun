@@ -75,9 +75,9 @@ export default function Home() {
               검사홈페이지
             </Typography>
             <Typography variant="h5" align="center" color="textSecondary" paragraph>
-              Something short and leading about the collection below—its contents, the creator, etc.
-              Make it short and sweet, but not too short so folks don&apos;t simply skip over it
-              entirely.
+             이 페이지는 기본건강 검진으로 알수 있는 수치로
+             (대장내시경 검사, 위내시경 검사, 상복부 초음파, 하복부 초음파)
+             검사를 에측 하는 페이지 입니다
             </Typography>
             <div className={classes.heroButtons}>
               <Grid container spacing={2} justify="center">
