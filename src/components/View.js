@@ -1,44 +1,54 @@
-import React, { useEffect } from "react";
-import axios from "axios";
-export default function View() {
-  useEffect(() => {
-    async function fetchData() {
-      const body ={
-        sex: "1",
-        age: "1",
-        alchol: "1",
-        cigarette: "1",
-        exercise: "1",
-        length: "1",
-        weight: "1",
-        obesity: "1",
-        bmi: "1",
-        waist: "1",
-        ratio: "1",
-        left: "1",
-        right: "1",
-        max: "1",
-        min: "1",
-        protein: "1",
-        color: "1",
-        sugar: "1",
-        tchol: "1",
-        hdl: "1", 
-        ldl: "1",
-        crea: "1",
-        ast: "1",
-        alt: "1",
-        gam_gpt: "1"
-      };
-      const url = "http://3.34.5.242:5000/TEST2";
-      const res = await axios.post(url, body);
-      console.log(res.data);
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import './View.scss';
+import { useResultContext } from '../store/context';
+function View() {
+  const { result, setResult } = useResultContext();
+  const [users, setUsers] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  const fetchUsers = async () => {
+    try {
+      // 요청이 시작 할 때에는 error 와 users 를 초기화하고
+      setError(null);
+      setUsers(null);
+      // loading 상태를 true 로 바꿉니다.
+      setLoading(true);
+      const response = await axios.get(
+        'http://3.34.5.242:5000/TEST2'
+      );
+      setUsers(response.data); // 데이터는 response.data 안에 들어있습니다.
+      console.log(response.data);
+    } catch (e) {
+      setError(e);
     }
-    fetchData();
+    setLoading(false);
+  };
+
+  useEffect(() => {
+    fetchUsers();
   }, []);
+    if (loading) return <div>L O A D I N G..</div>;
+    if (error) return <div>E R R O R</div>;
+    if (!users) return null;
+  console.log(users);
+
   return (
-    <div className="View">
-      <h1>sada</h1>
+    <div className="a1">
+      <ul>
+        {/*{users.map(user => (
+          <div key={user.id}>
+            {user.name}
+          </div>
+        ))}*/}
+        {result.c}<br/>
+        {result.g}
+      </ul>
+      <button className="button" onClick={fetchUsers}>다시 불러오기</button>
     </div>
-  )
+  );
 }
+
+  
+  export default View;

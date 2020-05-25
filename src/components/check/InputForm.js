@@ -1,10 +1,11 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import axios from "axios";
+import './InputForm.scss'; 
+import { useResultContext } from '../../store/context';
 
-import './InputForm.scss';
-
-class InputForm extends Component {
-  state = {
+function InputForm () {
+  const { result, setResult } = useResultContext();
+  const [data, setData] = useState({
     sex: '',
     age: '',
     alchol: '',
@@ -30,104 +31,110 @@ class InputForm extends Component {
     ast: '',
     alt: '',
     gam_gpt: ''
-  };
+  })
 
-  onsexChange = e => {this.setState({sex: e.target.value});};
-  onageChange = e => {this.setState({age: e.target.value});};
-  onalcholChange = e => {this.setState({alchol: e.target.value});};
-  oncigaretteChange = e => {this.setState({cigarette: e.target.value});};
-  onexerciseChange = e => {this.setState({exercise: e.target.value});};
-  onlengthChange = e => {this.setState({length: e.target.value});};
-  onweightChange = e => {this.setState({weight: e.target.value});};
-  onobesityChange = e => {this.setState({obesity: e.target.value});};
-  onbmiChange = e => {this.setState({bmi: e.target.value});};
-  onwaistChange = e => {this.setState({waist: e.target.value});};
-  onratioChange = e => {this.setState({ratio: e.target.value});};
-  onleftChange = e => {this.setState({left: e.target.value});};
-  onrightChange = e => {this.setState({right: e.target.value});};
-  onmaxChange = e => {this.setState({max: e.target.value});};
-  onminChange = e => {this.setState({min: e.target.value});};
-  onproteinChange = e => {this.setState({protein: e.target.value});};
-  oncolorChange = e => {this.setState({color: e.target.value});};
-  onsugarChange = e => {this.setState({sugar: e.target.value});};
-  ontcholChange = e => {this.setState({tchol: e.target.value});};
-  onhdlChange = e => {this.setState({hdl: e.target.value});};
-  onldlChange = e => {this.setState({ldl: e.target.value});};
-  oncreaChange = e => {this.setState({crea: e.target.value});};
-  onastChange = e => {this.setState({ast: e.target.value});};
-  onaltChange = e => {this.setState({alt: e.target.value});};
-  ongam_gptChange = e => {this.setState({gam_gpt: e.target.value});};
+  const onsexChange = e => {setData({...data, sex: e.target.value});};
+  const onageChange = e => {setData({...data, age: e.target.value});};
+  const onalcholChange = e => {setData({...data, alchol: e.target.value});};
+  const oncigaretteChange = e => {setData({...data, cigarette: e.target.value});};
+  const onexerciseChange = e => {setData({...data, exercise: e.target.value});};
+  const onlengthChange = e => {setData({...data, length: e.target.value});};
+  const onweightChange = e => {setData({...data, weight: e.target.value});};
+  const onobesityChange = e => {setData({...data, obesity: e.target.value});};
+  const onbmiChange = e => {setData({...data, bmi: e.target.value});};
+  const onwaistChange = e => {setData({...data, waist: e.target.value});};
+  const onratioChange = e => {setData({...data, ratio: e.target.value});};
+  const onleftChange = e => {setData({...data, left: e.target.value});};
+  const onrightChange = e => {setData({...data, right: e.target.value});};
+  const onmaxChange = e => {setData({...data, max: e.target.value});};
+  const onminChange = e => {setData({...data, min: e.target.value});};
+  const onproteinChange = e => {setData({...data, protein: e.target.value});};
+  const oncolorChange = e => {setData({...data, color: e.target.value});};
+  const onsugarChange = e => {setData({...data, sugar: e.target.value});};
+  const ontcholChange = e => {setData({...data, tchol: e.target.value});};
+  const onhdlChange = e => {setData({...data, hdl: e.target.value});};
+  const onldlChange = e => {setData({...data, ldl: e.target.value});};
+  const oncreaChange = e => {setData({...data, crea: e.target.value});};
+  const onastChange = e => {setData({...data, ast: e.target.value});};
+  const onaltChange = e => {setData({...data, alt: e.target.value});};
+  const ongam_gptChange = e => {setData({...data, gam_gpt: e.target.value});};
   
-  handleSubmit = e => {
-    e.preventDefault();
-    const data = {
-      sex: this.state.sex,
-      age: this.state.age,
-      alchol: this.state.alchol,
-      cigarette: this.state.cigarette,
-      exercise: this.state.exercise,
-      length: this.state.length,
-      weight: this.state.weight,
-      obesity: this.state.obesity,
-      bmi: this.state.bmi,
-      waist: this.state.waist,
-      ratio: this.state.ratio,
-      left: this.state.left,
-      right: this.state.right,
-      max: this.state.max,
-      min: this.state.min,
-      protein: this.state.protein,
-      color: this.state.color,
-      sugar: this.state.sugar,
-      tchol: this.state.tchol,
-      hdl: this.state.hdl,
-      ldl: this.state.ldl,
-      crea: this.state.crea,
-      ast: this.state.ast, 
-      alt: this.state.alt,
-      gam_gpt: this.state.gam_gpt
+  const handleSubmit = () => {
+    // e.preventDefault();
+    const data1 = {
+      sex: data.sex,
+      age: data.age,
+      alchol: data.alchol,
+      cigarette: data.cigarette,
+      exercise: data.exercise,
+      length: data.length,
+      weight: data.weight,
+      obesity: data.obesity,
+      bmi: data.bmi,
+      waist: data.waist,
+      ratio: data.ratio,
+      left: data.left,
+      right: data.right,
+      max: data.max,
+      min: data.min,
+      protein: data.protein,
+      color: data.color,
+      sugar: data.sugar,
+      tchol: data.tchol,
+      hdl: data.hdl,
+      ldl: data.ldl,
+      crea: data.crea,
+      ast: data.ast,
+      alt: data.alt,
+      gam_gpt: data.gam_gpt
     };
     axios
-      .post("http://3.34.5.242:5000/TEST2", data)
-      .then(res => console.log(res.data))
+      .post("http://3.34.5.242:5000/TEST2", data1)
+      .then(res => {
+        console.log(res)
+        console.log(res.Colonoscopy)
+        setResult({
+          c: res.data.Colonoscopy,
+          g: res.data.Gastroscopy
+        })
+        
+      })
       .catch(err => console.log(err));
+      // window.location = "/retrieve"
   };
-  
 
-  render() {
     return (
       <div className="post">
-        <form className="post" onSubmit={this.handleSubmit}>
-          <input placeholder="sex" value={this.state.sex} onChange={this.onsexChange} required /><br />
-          <input placeholder="age" value={this.state.age} onChange={this.onageChange} required /><br />
-          <input placeholder="alchol" value={this.state.alchol} onChange={this.onalcholChange} required /><br />
-          <input placeholder="cigarette" value={this.state.cigarette} onChange={this.oncigaretteChange} required /><br />
-          <input placeholder="exercise" value={this.state.exercise} onChange={this.onexerciseChange} required /><br />
-          <input placeholder="length" value={this.state.length} onChange={this.onlengthChange} required /><br />
-          <input placeholder="weight" value={this.state.weight} onChange={this.onweightChange} required /><br />
-          <input placeholder="obesity" value={this.state.obesity} onChange={this.onobesityChange} required /><br />
-          <input placeholder="bmi" value={this.state.bmi} onChange={this.onbmiChange} required /><br />
-          <input placeholder="waist" value={this.state.waist} onChange={this.onwaistChange} required /><br />
-          <input placeholder="ratio" value={this.state.ratio} onChange={this.onratioChange} required /><br />
-          <input placeholder="left" value={this.state.left} onChange={this.onleftChange} required /><br />
-          <input placeholder="right" value={this.state.right} onChange={this.onrightChange} required /><br />
-          <input placeholder="max" value={this.state.max} onChange={this.onmaxChange} required /><br />
-          <input placeholder="min" value={this.state.min} onChange={this.onminChange} required /><br />
-          <input placeholder="protein" value={this.state.protein} onChange={this.onproteinChange} required /><br />
-          <input placeholder="color" value={this.state.color} onChange={this.oncolorChange} required /><br />
-          <input placeholder="sugar" value={this.state.sugar} onChange={this.onsugarChange} required /><br />
-          <input placeholder="tchol" value={this.state.tchol} onChange={this.ontcholChange} required /><br />
-          <input placeholder="hdl" value={this.state.hdl} onChange={this.onhdlChange} required /><br />
-          <input placeholder="ldl" value={this.state.ldl} onChange={this.onldlChange} required /><br />
-          <input placeholder="crea" value={this.state.crea} onChange={this.oncreaChange} required /><br />
-          <input placeholder="ast" value={this.state.ast} onChange={this.onastChange} required /><br />
-          <input placeholder="alt" value={this.state.alt} onChange={this.onaltChange} required /><br />
-          <input placeholder="gam_gpt" value={this.state.gam_gpt} onChange={this.ongam_gptChange} required /><br /><br />
-          <button type="submit" className="button">등록</button>
-        </form>
+        {/* <form className="post" onSubmit={this.handleSubmit}> */}
+          <input placeholder="sex" value={data.sex} onChange={(e) => onsexChange(e)} required /><br />
+          <input placeholder="age" value={data.age} onChange={(e) => onageChange(e)} required /><br />
+          <input placeholder="alchol" value={data.alchol} onChange={(e) => onalcholChange(e)} required /><br />
+          <input placeholder="cigarette" value={data.cigarette} onChange={(e) => oncigaretteChange(e)} required /><br />
+          <input placeholder="exercise" value={data.exercise} onChange={(e) => onexerciseChange(e)} required /><br />
+          <input placeholder="length" value={data.length} onChange={(e) => onlengthChange(e)} required /><br />
+          <input placeholder="weight" value={data.weight} onChange={(e) => onweightChange(e)} required /><br />
+          <input placeholder="obesity" value={data.obesity} onChange={(e) => onobesityChange(e)} required /><br />
+          <input placeholder="bmi" value={data.bmi} onChange={(e) => onbmiChange(e)} required /><br />
+          <input placeholder="waist" value={data.waist} onChange={(e) => onwaistChange(e)} required /><br />
+          <input placeholder="ratio" value={data.ratio} onChange={(e) => onratioChange(e)} required /><br />
+          <input placeholder="left" value={data.left} onChange={(e) => onleftChange(e)} required /><br />
+          <input placeholder="right" value={data.right} onChange={(e) => onrightChange(e)} required /><br />
+          <input placeholder="max" value={data.max} onChange={(e) => onmaxChange(e)} required /><br />
+          <input placeholder="min" value={data.min} onChange={(e) => onminChange(e)} required /><br />
+          <input placeholder="protein" value={data.protein} onChange={(e) => onproteinChange(e)} required /><br />
+          <input placeholder="color" value={data.color} onChange={(e) => oncolorChange(e)} required /><br />
+          <input placeholder="sugar" value={data.sugar} onChange={(e) => onsugarChange(e)} required /><br />
+          <input placeholder="tchol" value={data.tchol} onChange={(e) => ontcholChange(e)} required /><br />
+          <input placeholder="hdl" value={data.hdl} onChange={(e) => onhdlChange(e)} required /><br />
+          <input placeholder="ldl" value={data.ldl} onChange={(e) => onldlChange(e)} required /><br />
+          <input placeholder="crea" value={data.crea} onChange={(e) => oncreaChange(e)} required /><br />
+          <input placeholder="ast" value={data.ast} onChange={(e) => onastChange(e)} required /><br />
+          <input placeholder="alt" value={data.alt} onChange={(e) => onaltChange(e)} required /><br />
+          <input placeholder="gam_gpt" value={data.gam_gpt} onChange={(e) => ongam_gptChange(e)} required /><br /><br />
+          <button onClick={() => handleSubmit()} className="button">등록</button>
+        {/* </form> */}
       </div>
     );
-  }
 }
 
 export default InputForm;
