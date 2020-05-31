@@ -106,9 +106,8 @@ function InputForm () {
   };
 
     return (
-      <div>
+      <div className="myForm">
         
-        <form className="myForm">
         {/* <form className="post" onSubmit={this.handleSubmit}> */}
         <br /><Typography component="h2" variant="h2" align="center" color="textPrimary" gutterBottom>Measurement value input</Typography>
           <input placeholder="sex" value={data.sex} onChange={(e) => onsexChange(e)} required /><br />
@@ -138,7 +137,6 @@ function InputForm () {
           <input placeholder="gam_gpt" value={data.gam_gpt} onChange={(e) => ongam_gptChange(e)} required /><br /><br />
           <button onClick={() => handleSubmit()} className="button">등록</button>
         {/* </form> */}
-        </form>
       </div>
     );
 }
