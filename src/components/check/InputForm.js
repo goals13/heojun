@@ -3,6 +3,7 @@ import axios from "axios";
 import './InputForm.scss'; 
 import { useResultContext } from '../../store/context';
 
+
 function InputForm () {
   const { result, setResult } = useResultContext();
   const [data, setData] = useState({
