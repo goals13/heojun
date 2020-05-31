@@ -2,6 +2,7 @@ import React, { Component, useState } from "react";
 import axios from "axios";
 import './InputForm.scss'; 
 import { useResultContext } from '../../store/context';
+import Typography from '@material-ui/core/Typography';
 
 
 function InputForm () {
@@ -105,8 +106,11 @@ function InputForm () {
   };
 
     return (
-      <div className="post">
+      <div>
+        
+        <form className="myForm">
         {/* <form className="post" onSubmit={this.handleSubmit}> */}
+        <br /><Typography component="h2" variant="h2" align="center" color="textPrimary" gutterBottom>Measurement value input</Typography>
           <input placeholder="sex" value={data.sex} onChange={(e) => onsexChange(e)} required /><br />
           <input placeholder="age" value={data.age} onChange={(e) => onageChange(e)} required /><br />
           <input placeholder="alchol" value={data.alchol} onChange={(e) => onalcholChange(e)} required /><br />
@@ -134,6 +138,7 @@ function InputForm () {
           <input placeholder="gam_gpt" value={data.gam_gpt} onChange={(e) => ongam_gptChange(e)} required /><br /><br />
           <button onClick={() => handleSubmit()} className="button">등록</button>
         {/* </form> */}
+        </form>
       </div>
     );
 }

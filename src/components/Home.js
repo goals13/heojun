@@ -12,6 +12,10 @@ import Grid from '@material-ui/core/Grid';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
+import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
+import HomeIcon from '@material-ui/icons/Home';
+import CheckIcon from '@material-ui/icons/Check';
+import ListIcon from '@material-ui/icons/List';
 
 function Copyright() {
   return (
@@ -98,12 +102,23 @@ export default function SignInSide() {
           <form className={classes.form} noValidate>
             
             <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
-              검사홈페이지
+              Heo Jun
             </Typography>
             <Typography variant="h5" align="center" color="textSecondary" paragraph>
-             이 페이지는 기본건강 검진으로 알수 있는 수치로
-             (대장내시경 검사, 위내시경 검사, 상복부 초음파, 하복부 초음파)
-             검사를 에측 하는 페이지 입니다
+              The site is based on basic health checkups.
+              (Colonoscopy, gastroscopy, ultrasound of the upper abdomen, ultrasound of the lower abdomen)
+              It is a page to predict inspection
+            </Typography>
+              <br /><br /><br />
+            <Typography variant="h4" align="center" paragraph>
+              <CheckIcon /> ToCheck&nbsp;&nbsp;<ArrowForwardIosIcon /> &nbsp;&nbsp;<ListIcon />View Result
+            </Typography>
+            <Typography variant="h5" align="center" color="textSecondary" paragraph>
+            
+              It is divided into two order of progress. <br />
+              #01&nbsp;&nbsp;<CheckIcon />Click to enter the number and register<br />
+              &nbsp;&nbsp; #02&nbsp;&nbsp;<ListIcon />On click, the number you just entered and entered <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              Based on this, it shows the predicted value.
             </Typography>
             <div className={classes.heroButtons}>
               <Grid container spacing={2} justify="center">
@@ -114,17 +129,17 @@ export default function SignInSide() {
                   color="gray"
                   className={classes.submit}
                 >
-                  이미지 리셋
+                Image Reset
                 </Button>
               </Grid>
             </div>
 
             <footer className={classes.footer}>
               <Typography variant="h6" align="center" gutterBottom>
-                Footer
+                BIT
               </Typography>
               <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
-                Something here to give the footer a purpose!
+                Data data relies on non-innovation (good doctor)!
               </Typography>
               <Copyright />
             </footer>

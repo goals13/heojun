@@ -21,10 +21,10 @@ const Header = () => {
                         <div className='pick'><HomeIcon className='home-click' /></div>
                     </Link>
                     <Link to="/ToCheck"><div className='pick'>
-                        <CheckIcon className='tocheck-click' />검사하기</div>
+                        <CheckIcon className='tocheck-click' /></div>
                     </Link>
                     <Link to="/ViewResult"><div className='pick'>
-                        <ListIcon className='viewresult-click' />결과 보기</div>
+                        <ListIcon className='viewresult-click' /></div>
                     </Link>
 
                     <Route exact path="/" component={Home} />
