@@ -3,11 +3,23 @@ import axios from "axios";
 import './InputForm.scss'; 
 import { useResultContext } from '../../store/context';
 import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
 
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    '& .MuiTextField-root': {
+      margin: theme.spacing(1),
+      width: 200,
+    },
+  },
+}));
 
 function InputForm () {
   const { result, setResult } = useResultContext();
   const [data, setData] = useState({
+    name: '',
     sex: '',
     age: '',
     alchol: '',
@@ -35,6 +47,7 @@ function InputForm () {
     gam_gpt: ''
   })
 
+  const onnameChange = e => {setData({...data, name: e.target.value});};
   const onsexChange = e => {setData({...data, sex: e.target.value});};
   const onageChange = e => {setData({...data, age: e.target.value});};
   const onalcholChange = e => {setData({...data, alchol: e.target.value});};
@@ -64,6 +77,7 @@ function InputForm () {
   const handleSubmit = () => {
     // e.preventDefault();
     const data1 = {
+      name: data.name,
       sex: data.sex,
       age: data.age,
       alchol: data.alchol,
@@ -97,46 +111,50 @@ function InputForm () {
         console.log(res.Colonoscopy)
         setResult({
           c: res.data.Colonoscopy,
-          g: res.data.Gastroscopy
+          g: res.data.Gastroscopy,
+          n: res.data.name
         })
         
       })
       .catch(err => console.log(err));
       // window.location = "/retrieve"
   };
+  const classes = useStyles();
 
     return (
-      <div className="myForm">
-        
+      <div className={classes.root} noValidate autoComplete="off">
+        <div className="myForm">
         {/* <form className="post" onSubmit={this.handleSubmit}> */}
         <br /><Typography component="h2" variant="h2" align="center" color="textPrimary" gutterBottom>Measurement value input</Typography>
-          <input placeholder="sex" value={data.sex} onChange={(e) => onsexChange(e)} required /><br />
-          <input placeholder="age" value={data.age} onChange={(e) => onageChange(e)} required /><br />
-          <input placeholder="alchol" value={data.alchol} onChange={(e) => onalcholChange(e)} required /><br />
-          <input placeholder="cigarette" value={data.cigarette} onChange={(e) => oncigaretteChange(e)} required /><br />
-          <input placeholder="exercise" value={data.exercise} onChange={(e) => onexerciseChange(e)} required /><br />
-          <input placeholder="length" value={data.length} onChange={(e) => onlengthChange(e)} required /><br />
-          <input placeholder="weight" value={data.weight} onChange={(e) => onweightChange(e)} required /><br />
-          <input placeholder="obesity" value={data.obesity} onChange={(e) => onobesityChange(e)} required /><br />
-          <input placeholder="bmi" value={data.bmi} onChange={(e) => onbmiChange(e)} required /><br />
-          <input placeholder="waist" value={data.waist} onChange={(e) => onwaistChange(e)} required /><br />
-          <input placeholder="ratio" value={data.ratio} onChange={(e) => onratioChange(e)} required /><br />
-          <input placeholder="left" value={data.left} onChange={(e) => onleftChange(e)} required /><br />
-          <input placeholder="right" value={data.right} onChange={(e) => onrightChange(e)} required /><br />
-          <input placeholder="max" value={data.max} onChange={(e) => onmaxChange(e)} required /><br />
-          <input placeholder="min" value={data.min} onChange={(e) => onminChange(e)} required /><br />
-          <input placeholder="protein" value={data.protein} onChange={(e) => onproteinChange(e)} required /><br />
-          <input placeholder="color" value={data.color} onChange={(e) => oncolorChange(e)} required /><br />
-          <input placeholder="sugar" value={data.sugar} onChange={(e) => onsugarChange(e)} required /><br />
-          <input placeholder="tchol" value={data.tchol} onChange={(e) => ontcholChange(e)} required /><br />
-          <input placeholder="hdl" value={data.hdl} onChange={(e) => onhdlChange(e)} required /><br />
-          <input placeholder="ldl" value={data.ldl} onChange={(e) => onldlChange(e)} required /><br />
-          <input placeholder="crea" value={data.crea} onChange={(e) => oncreaChange(e)} required /><br />
-          <input placeholder="ast" value={data.ast} onChange={(e) => onastChange(e)} required /><br />
-          <input placeholder="alt" value={data.alt} onChange={(e) => onaltChange(e)} required /><br />
-          <input placeholder="gam_gpt" value={data.gam_gpt} onChange={(e) => ongam_gptChange(e)} required /><br /><br />
+          <TextField label="name" id="outlined-size-small" id="outlined-size-small" defaultValue="name" variant="outlined" size="small" value={data.name} onChange={(e) => onnameChange(e)} required /><br /><br />
+          <TextField label="sex" id="outlined-size-small" id="outlined-size-small" defaultValue="sex" variant="outlined" size="small" value={data.sex} onChange={(e) => onsexChange(e)} required />
+          <TextField label="age" id="outlined-size-small" id="outlined-size-small" defaultValue="age" variant="outlined" size="small" value={data.age} onChange={(e) => onageChange(e)} required />
+          <TextField label="alchol" id="outlined-size-small" id="outlined-size-small" defaultValue="alchol" variant="outlined" size="small" value={data.alchol} onChange={(e) => onalcholChange(e)} required /><br />
+          <TextField label="cigarette" id="outlined-size-small" id="outlined-size-small" defaultValue="cigarette" variant="outlined" size="small" value={data.cigarette} onChange={(e) => oncigaretteChange(e)} required />
+          <TextField label="exercise" id="outlined-size-small" id="outlined-size-small" defaultValue="exercise" variant="outlined" size="small" value={data.exercise} onChange={(e) => onexerciseChange(e)} required />
+          <TextField label="length" id="outlined-size-small" id="outlined-size-small" defaultValue="length" variant="outlined" size="small" value={data.length} onChange={(e) => onlengthChange(e)} required /><br />
+          <TextField label="weight" id="outlined-size-small" id="outlined-size-small" defaultValue="weight" variant="outlined" size="small" value={data.weight} onChange={(e) => onweightChange(e)} required />
+          <TextField label="obesity" id="outlined-size-small" id="outlined-size-small" defaultValue="obesity" variant="outlined" size="small" value={data.obesity} onChange={(e) => onobesityChange(e)} required />
+          <TextField label="bmi" id="outlined-size-small" id="outlined-size-small" defaultValue="bmi" variant="outlined" size="small" value={data.bmi} onChange={(e) => onbmiChange(e)} required /><br />
+          <TextField label="waist" id="outlined-size-small" id="outlined-size-small" defaultValue="waist" variant="outlined" size="small" value={data.waist} onChange={(e) => onwaistChange(e)} required />
+          <TextField label="ratio" id="outlined-size-small" id="outlined-size-small" defaultValue="ratio" variant="outlined" size="small" value={data.ratio} onChange={(e) => onratioChange(e)} required />
+          <TextField label="left" id="outlined-size-small" id="outlined-size-small" defaultValue="left" variant="outlined" size="small" value={data.left} onChange={(e) => onleftChange(e)} required /><br />
+          <TextField label="right" id="outlined-size-small" id="outlined-size-small" defaultValue="right" variant="outlined" size="small" value={data.right} onChange={(e) => onrightChange(e)} required />
+          <TextField label="max" id="outlined-size-small" id="outlined-size-small" defaultValue="max" variant="outlined" size="small" value={data.max} onChange={(e) => onmaxChange(e)} required />
+          <TextField label="min" id="outlined-size-small" id="outlined-size-small" defaultValue="min" variant="outlined" size="small" value={data.min} onChange={(e) => onminChange(e)} required /><br />
+          <TextField label="protein" id="outlined-size-small" id="outlined-size-small" defaultValue="protein" variant="outlined" size="small" value={data.protein} onChange={(e) => onproteinChange(e)} required />
+          <TextField label="color" id="outlined-size-small" id="outlined-size-small" defaultValue="color" variant="outlined" size="small" value={data.color} onChange={(e) => oncolorChange(e)} required />
+          <TextField label="sugar" id="outlined-size-small" id="outlined-size-small" defaultValue="sugar" variant="outlined" size="small" value={data.sugar} onChange={(e) => onsugarChange(e)} required /><br />
+          <TextField label="tchol" id="outlined-size-small" id="outlined-size-small" defaultValue="tchol" variant="outlined" size="small" value={data.tchol} onChange={(e) => ontcholChange(e)} required />
+          <TextField label="hdl" id="outlined-size-small" id="outlined-size-small" defaultValue="hdl" variant="outlined" size="small" value={data.hdl} onChange={(e) => onhdlChange(e)} required />
+          <TextField label="ldl" id="outlined-size-small" id="outlined-size-small" defaultValue="ldl" variant="outlined" size="small" value={data.ldl} onChange={(e) => onldlChange(e)} required /><br />
+          <TextField label="crea" id="outlined-size-small" id="outlined-size-small" defaultValue="crea" variant="outlined" size="small" value={data.crea} onChange={(e) => oncreaChange(e)} required />
+          <TextField label="ast" id="outlined-size-small" id="outlined-size-small" defaultValue="ast" variant="outlined" size="small" value={data.ast} onChange={(e) => onastChange(e)} required />
+          <TextField label="alt" id="outlined-size-small" id="outlined-size-small" defaultValue="alt" variant="outlined" size="small" value={data.alt} onChange={(e) => onaltChange(e)} required /><br />
+          <TextField label="gam_gpt" id="outlined-size-small" id="outlined-size-small" defaultValue="gam_gpt" variant="outlined" size="small" value={data.gam_gpt} onChange={(e) => ongam_gptChange(e)} required /><br /><br />
           <button onClick={() => handleSubmit()} className="button">등록</button>
         {/* </form> */}
+        </div>
       </div>
     );
 }

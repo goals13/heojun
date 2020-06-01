@@ -60,9 +60,10 @@ function View() {
           </div>
         ))}*/}
 
-        <br/><br/>
-         &nbsp;&nbsp;&nbsp;위 내시경 측정 결과 : {convertC(result.c)}<br/><br/>
-         대장 내시경 측정 결과 : {convertC(result.g)}<br/><br/>
+        <br/>
+        <br/><h2><b> {(result.n)} </b></h2>[님의 검사 결과]<br/><br/>
+         &nbsp;&nbsp;&nbsp;위 내시경 : {convertC(result.c)}<br/><br/>
+         대장 내시경 : {convertC(result.g)}<br/><br/><br/>
         </ul>
       <button className="button" onClick={fetchUsers}>다시 불러오기</button>
     </div>
