@@ -1,6 +1,5 @@
 import React, {Component, Fragment} from 'react';
 import InputForm from './check/InputForm';
-import './ToCheck.scss';
 
 
 class ToCheck extends Component {

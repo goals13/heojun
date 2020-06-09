@@ -44,7 +44,9 @@ function InputForm () {
     crea: '',
     ast: '',
     alt: '',
-    gam_gpt: ''
+    gam_gpt: '',
+    x_ray: '',
+    hgb: '',
   })
 
   const onnameChange = e => {setData({...data, name: e.target.value});};
@@ -73,6 +75,8 @@ function InputForm () {
   const onastChange = e => {setData({...data, ast: e.target.value});};
   const onaltChange = e => {setData({...data, alt: e.target.value});};
   const ongam_gptChange = e => {setData({...data, gam_gpt: e.target.value});};
+  const onx_rayChange = e => {setData({...data, x_ray: e.target.value});};
+  const onhgbChange = e => {setData({...data, hgb: e.target.value});};
   
   const handleSubmit = () => {
     // e.preventDefault();
@@ -102,7 +106,9 @@ function InputForm () {
       crea: data.crea,
       ast: data.ast,
       alt: data.alt,
-      gam_gpt: data.gam_gpt
+      gam_gpt: data.gam_gpt,
+      x_ray: data.x_ray,
+      hgb: data.hgb
     };
     axios
       .post("http://3.34.5.242:5000/TEST2", data1)
@@ -112,7 +118,10 @@ function InputForm () {
         setResult({
           c: res.data.Colonoscopy,
           g: res.data.Gastroscopy,
-          n: res.data.name
+          n: res.data.name,
+          tho: res.data.Thorax,
+          thy: res.data.Thyroid,
+          tc: res.data.TCD,
         })
         
       })
@@ -151,7 +160,9 @@ function InputForm () {
           <TextField label="crea" id="outlined-size-small" id="outlined-size-small" defaultValue="crea" variant="outlined" size="small" value={data.crea} onChange={(e) => oncreaChange(e)} required />
           <TextField label="ast" id="outlined-size-small" id="outlined-size-small" defaultValue="ast" variant="outlined" size="small" value={data.ast} onChange={(e) => onastChange(e)} required />
           <TextField label="alt" id="outlined-size-small" id="outlined-size-small" defaultValue="alt" variant="outlined" size="small" value={data.alt} onChange={(e) => onaltChange(e)} required /><br />
-          <TextField label="gam_gpt" id="outlined-size-small" id="outlined-size-small" defaultValue="gam_gpt" variant="outlined" size="small" value={data.gam_gpt} onChange={(e) => ongam_gptChange(e)} required /><br /><br />
+          <TextField label="gam_gpt" id="outlined-size-small" id="outlined-size-small" defaultValue="gam_gpt" variant="outlined" size="small" value={data.gam_gpt} onChange={(e) => ongam_gptChange(e)} required />
+          <TextField label="x_ray" id="outlined-size-small" id="outlined-size-small" defaultValue="x_ray" variant="outlined" size="small" value={data.x_ray} onChange={(e) => onx_rayChange(e)} required />
+          <TextField label="hgb" id="outlined-size-small" id="outlined-size-small" defaultValue="hgb" variant="outlined" size="small" value={data.hgb} onChange={(e) => onhgbChange(e)} required /><br /><br />
           <button onClick={() => handleSubmit()} className="button">등록</button>
         {/* </form> */}
         </div>
